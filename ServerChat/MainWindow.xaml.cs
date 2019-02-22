@@ -31,12 +31,16 @@ namespace ServerChat
         private Thread listenThread; // потока для прослушивания
 
         private static ObservableCollection<string> _listClients;
+        private ObservableCollection<Message> _listMessage;
         public MainWindow()
         {
             InitializeComponent();
 
             _listClients = new ObservableCollection<string>();
             listBoxListClients.ItemsSource = _listClients;
+
+            _listMessage = new ObservableCollection<Message>();
+            listBoxistReciveMessage.ItemsSource = _listMessage;
 
             textBoxPortServer.Text = portHost.ToString();
         }
@@ -89,11 +93,7 @@ namespace ServerChat
             // Получить диспетчер от текущего окна и использовать его для вызова кода обновления
             this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate ()
                 {
-                    TextBlock textBlock = new TextBlock();
-                    textBlock.Text = message;
-
-                    textBlock.Style = (Style)this.TryFindResource("StyleReciveMessage");
-                    spListReciveMessage.Children.Add(textBlock);
+                    _listMessage.Add(new Message { Text = message });
                 }
               );
 
@@ -133,6 +133,13 @@ namespace ServerChat
                 //communicationWithServer.SendMessageToServer("disconnect");
                 server.Disconnect();
             }
+        }
+
+        public class Message
+        {
+            public string Name { get; set; }
+            public string Text { get; set; }
+            public string Side { get; set; }
         }
     }
 }

@@ -52,7 +52,13 @@
         </DockPanel>
         <DockPanel DockPanel.Dock="Right">
             <TextBlock DockPanel.Dock="Top" FontWeight="Bold"  TextDecorations="Underline" Text="Активность чата" />
-            <StackPanel DockPanel.Dock="Top" x:Name="spListReciveMessage" Orientation="Vertical" />
+            <ListBox  DockPanel.Dock="Top" x:Name="listBoxistReciveMessage" HorizontalContentAlignment="Stretch" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock  Style="{StaticResource StyleReciveMessage}" Text="{Binding Path=Text}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </DockPanel>
         
     </DockPanel>
