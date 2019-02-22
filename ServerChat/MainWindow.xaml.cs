@@ -104,11 +104,11 @@ namespace ServerChat
             string patternPort = @"\d{4}\d?$";
             if(Regex.IsMatch(textBoxPortServer.Text, patternPort))
             {
-                ((MainWindow)this.Owner).portHost = Convert.ToInt32(textBoxPortServer.Text);
+               portHost = Convert.ToInt32(textBoxPortServer.Text);
             }
             else
             {
-                textBoxPortServer.Text = ((MainWindow)this.Owner).portHost.ToString();
+                textBoxPortServer.Text = portHost.ToString();
             }
         }
 
